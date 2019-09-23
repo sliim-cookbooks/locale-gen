@@ -24,6 +24,13 @@ execute "locale-gen" do
     action :nothing
 end
 
+directory ::File.dirname(node["localegen"]["locale_file"]) do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  recursive true
+end
+
 file node["localegen"]["locale_file"] do
   action :create
   owner "root"
